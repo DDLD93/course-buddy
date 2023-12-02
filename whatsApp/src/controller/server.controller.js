@@ -1,5 +1,4 @@
 const { ServerSchema } = require("../models/model");
-const {createWhatsappServer} = require("../whatsAppEngine")
 
 class ServerController {
     constructor() { }
@@ -37,9 +36,7 @@ class ServerController {
             let { ok, data } = await this.getOne(id)
             if (!ok || !data) {
                 return { ok: false, message: "server not found" };
-
             }
-            createWhatsappServer(id)
             return { ok: true, message: "server started" };
         } catch (err) {
             console.log(err.message);

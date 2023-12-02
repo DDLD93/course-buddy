@@ -1,5 +1,5 @@
 const ServerController = require('./controller/server.controller');
-const {createWhatsappServer} = require("./whatsAppEngine")
+const { createWhatsappServer } = require("./whatsAppEngine")
 
 module.exports = (io) => {
     const clients = new Set();
@@ -36,7 +36,7 @@ module.exports = (io) => {
         socket.on('create', async (body, callback) => {
             try {
                 const result = await ServerController.create(body);
-                callback({ ok: true, data: result });
+                callback(result);
             } catch (err) {
                 console.error("Error in create:", err.message);
                 callback({ ok: false, message: err.message });
@@ -45,13 +45,13 @@ module.exports = (io) => {
 
         socket.on('startServer', async (id, callback) => {
             try {
-                // const result = await ServerController.getOne(id);
-                // if (!result.ok) {
-                //   return  callback({ ok: false, message: "server not found" })
-                // }
-                console.log({id})
-                createWhatsappServer(id,io)
-                callback({ ok: true, message: "result.message "});
+                const result = await ServerController.getOne(id);
+                if (!result.ok) {
+                    return callback({ ok: false, message: "server not found" })
+                }
+                console.log({ result })
+                // createWhatsappServer(id, io)
+                callback(result );
             } catch (err) {
                 console.error("Error in startServer:", err.message);
                 callback({ ok: false, message: err.message });
@@ -61,7 +61,7 @@ module.exports = (io) => {
         socket.on('update', async ({ id, newData }, callback) => {
             try {
                 const result = await ServerController.update(id, newData);
-                callback({ ok: true, data: result });
+                callback(result );
             } catch (err) {
                 console.error("Error in update:", err.message);
                 callback({ ok: false, message: err.message });
