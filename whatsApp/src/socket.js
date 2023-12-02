@@ -45,13 +45,13 @@ module.exports = (io) => {
 
         socket.on('startServer', async (id, callback) => {
             try {
-                // const result = await ServerController.getOne(id);
-                // if (!result.ok) {
-                //   return  callback({ ok: false, message: "server not found" })
-                // }
+                const result = await ServerController.getOne(id);
+                if (!result.ok) {
+                  return  callback({ ok: false, message: "server not found" })
+                }
                 console.log({id})
                 createWhatsappServer(id,io)
-                callback({ ok: true, message: "result.message "});
+                callback({ ok: true, message: result});
             } catch (err) {
                 console.error("Error in startServer:", err.message);
                 callback({ ok: false, message: err.message });
