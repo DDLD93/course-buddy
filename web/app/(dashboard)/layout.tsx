@@ -21,6 +21,7 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
+import ChatIcon from '@mui/icons-material/Chat';
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { closeSidebar } from '../utils';
@@ -87,7 +88,7 @@ function Layout({ children }) {
               lg: 'translateX(-100%)',
             },
           }}
-          // onClick={() => closeSidebar()}
+        // onClick={() => closeSidebar()}
         />
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
           <IconButton variant="soft" color="primary" size="sm">
@@ -118,8 +119,8 @@ function Layout({ children }) {
               mb: 2,
             }}
           >
-            <ListItem>
-              <ListItemButton>
+            <ListItem >
+              <ListItemButton >
                 <SupportRoundedIcon />
                 Support
               </ListItemButton>
@@ -128,6 +129,12 @@ function Layout({ children }) {
               <ListItemButton>
                 <SettingsRoundedIcon />
                 Settings
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ChatIcon />
+                Chat
               </ListItemButton>
             </ListItem>
           </List>
@@ -170,7 +177,7 @@ function Layout({ children }) {
         </Box>
       </Sheet>
       <Grid>
-      <Header />
+        <Header />
         {children}
       </Grid>
     </Grid>
