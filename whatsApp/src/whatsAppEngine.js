@@ -41,7 +41,8 @@ function createWhatsappServer(id,io) {
   });
 
   client.on('qr', (qr) => {
-    qrcode.generate(qr, { small: true });
+    // qrcode.generate(qr, { small: true });
+    // console.log(qr)
     emitToAll('qr', qr);
   });
 
@@ -49,7 +50,8 @@ function createWhatsappServer(id,io) {
     emitToAll('loading_screen', { percent, message });
   });
 
-  client.on('authenticated', () => {
+  client.on('authenticated', (id) => {
+    console.log("authenticated",id)
     emitToAll('authenticated', 'AUTHENTICATED');
   });
 
@@ -61,7 +63,9 @@ function createWhatsappServer(id,io) {
     emitToAll('error', `AUTHENTICATION FAILURE: ${msg}`);
   });
 
-  client.on('ready', async () => {
+  client.on('ready', async (id) => {
+    console.log("ready",id)
+
     try {
       const { ok, data, message } = await ServerController.update(id, { status: "online" });
       if (!ok) {

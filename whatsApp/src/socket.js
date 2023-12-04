@@ -49,9 +49,9 @@ module.exports = (io) => {
                 if (!result.ok) {
                     return callback({ ok: false, message: "server not found" })
                 }
-                console.log({ result })
-                // createWhatsappServer(id, io)
-                callback(result );
+                // console.log({ result })
+                createWhatsappServer(id, io)
+                callback(result);
             } catch (err) {
                 console.error("Error in startServer:", err.message);
                 callback({ ok: false, message: err.message });

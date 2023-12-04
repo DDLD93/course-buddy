@@ -36,7 +36,7 @@ module.exports = {
         password: REDIS_PASS
     },
     endpoints: {
-        mongoUrl: MONGODB_URL || "mongodb://localhost:27017/cbdb"
+        mongoUrl: MONGODB_URL || "mongodb://localhost:27017/twcdbvo"
     },
     // firebase:{
     //     bucket: FIREBASE_BUCKET || "gs://africaudio.appspot.com",
